@@ -1,0 +1,24 @@
+#bot_de_login_automatico
+#Importação das bibliotecas necessárias
+from selenium import webdriver
+from getpass import getpass
+
+#Ao ser executado, será aberta janela pedindo as credenciais
+Login=str(input("Digite seu Usuário:"))
+Senha=str(input("Digite sua senha:"))
+
+#Abertura de nova janela no Firefox e carregamento do site prédefinido.
+driver = webdriver.Firefox()
+driver.get('https://suap.ifrn.edu.br/accounts/login/?next=/')
+
+#Preenchimento automático das credenciais informadas inicialmente
+login_caixinha = driver.find_element_by_id('id_username')
+login_caixinha.send_keys(Login)
+
+#Continua o preenchimento
+senha_caixinha = driver.find_element_by_id('id_password')
+senha_caixinha.send_keys(Senha)
+
+#Localização do botão de submissão
+botao_login = driver.find_element_by_class_name('submit-row')
+botao_login.submit()
