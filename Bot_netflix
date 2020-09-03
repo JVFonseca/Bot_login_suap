@@ -1,0 +1,27 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+# Login/senha
+id_userLoginId = str(input("Digite seu Usuário/Email:"))
+id_password = str(input("Digite sua senha:"))
+
+# Inicializacao do driver Firefox
+driver = webdriver.Firefox()
+
+# Abrindo a pagina Netflix
+driver.get("https://www.netflix.com/br/login?nextpage=https%3A%2F%2Fwww.netflix.com%2Fbrowse")
+
+# Entrada do nome do usuário / email
+elmnt = driver.find_element_by_id("id_userLoginId")
+elmnt.send_keys(id_userLoginId)
+
+# Entrada da senha
+elmnt = driver.find_element_by_id("id_password")
+elmnt.send_keys(id_password)
+
+# Pressionando o botão de login
+elmnt.send_keys(Keys.RETURN)
+
+
+# Fechando o driver
+#driver.close()
